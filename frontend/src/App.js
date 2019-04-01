@@ -28,12 +28,13 @@ class Buttons extends React.Component {
           <button className="btn btn-default" onClick={this.props.slow}>Zpomalit</button>
           <button className="btn btn-default" onClick={this.props.fast}>Zrychlit</button>
           <button className="btn btn-default" onClick={this.props.seed}>Vygenerovat</button>
-        </ButtonToolbar>
-          <DropdownButton title="Velikost tabulky" id="dropdown-basic-button" onSelect={this.handleSelect}>
-            <Dropdown.Item eventKey="1">20x10</Dropdown.Item>
-            <Dropdown.Item eventKey="2">50x30</Dropdown.Item>
-            <Dropdown.Item eventKey="3">70x50</Dropdown.Item>
+          <DropdownButton className="btn" title="Velikost tabulky" id="dropdown-basic-button" onSelect={this.handleSelect}>
+            <Dropdown.Item className="btn" eventKey="1">20x10</Dropdown.Item>
+            <Dropdown.Item className="btn" eventKey="4">40x40</Dropdown.Item>
+            <Dropdown.Item className="btn" eventKey="2">50x30</Dropdown.Item>
+            <Dropdown.Item className="btn" eventKey="3">70x50</Dropdown.Item>
           </DropdownButton>
+        </ButtonToolbar>
       </div>
     )
   }
@@ -64,7 +65,7 @@ class App extends Component {
     let gridCopy = arrayClone(this.state.grid);
     for (let i = 0; i < this.rows; i++) {
       for (let j = 0; j < this.cols; j++) {
-        if (Math.floor(Math.random() * 4) === 1) {
+        if (Math.floor(Math.random() * 5) === 1) {
           gridCopy[i][j] = true;
           this.clear();
           this.setState({
@@ -123,31 +124,40 @@ class App extends Component {
     var grid = Array(this.rows).fill().map(() => Array(this.cols).fill(false));
     clearInterval(this.intervalId);
 
+    this.speed = 100;
+
     this.setState({
       grid: grid,
       generation: 0
     });
   }
-  
+
   gridSize = (size) => {
     switch (size) {
       case "1":
-      this.cols = 20;
-      this.rows = 10;
-      break;
+        this.cols = 20;
+        this.rows = 10;
+        break;
       case "2":
-      this.cols = 50;
-      this.rows = 30;
-      break;
+        this.cols = 50;
+        this.rows = 30;
+        break;
+      case "3":
+        this.cols = 70;
+        this.rows = 50;
+        break;
       default:
-      this.cols = 70;
-      this.rows = 50;
+        this.cols = 40;
+        this.rows = 40;
     }
     this.clear();
   }
-  
 
   render() {
+
+    
+    
+
     return (
       <div className="App">
         <h1>Game of life</h1>
@@ -165,6 +175,7 @@ class App extends Component {
           rows={this.rows}
           cols={this.cols}
           selectBox={this.selectBox}
+          className={this.speed > 100 ? "grid-slow" : "grid"}
         />
         <h2>Generace: {this.state.generation}</h2>
       </div>

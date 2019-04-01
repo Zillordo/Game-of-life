@@ -22,13 +22,14 @@ const Box = ({ boxClass, boxId, row, col, selectBox, onHold }) => {
         id={boxId} 
         onClick={select} 
         onMouseLeave={hold}
+        onMouseUp={hold}
         onDragStart={(e)=>e.preventDefault()} />
     );
 }
 
 
 
-const Grid = ({ cols, rows, grid, selectBox }) => {
+const Grid = ({ cols, rows, grid, selectBox, ...props }) => {
 
     const [hold, setHold] = useState(false);
 
@@ -51,13 +52,14 @@ const Grid = ({ cols, rows, grid, selectBox }) => {
                     col={j}
                     selectBox={selectBox}
                     onHold={hold}
+                    
                 />
             )
         }
     }
 
     return (
-        <div className="grid" style={{ width: width }} onMouseDown={()=> setHold(true)} onMouseUp={()=> setHold(false)}>
+        <div {...props} style={{ width: width }} onMouseDown={()=> setHold(true)} onMouseUp={()=> setHold(false)}>
             {rowsArr}
         </div>
     );

@@ -9,6 +9,7 @@ body {
     height: 15px;
     margin-left: -1px;
     margin-bottom: -1px;
+    transition: inherit;
 }
 
 .off {
@@ -16,7 +17,7 @@ body {
 }
 
 .on {
-    background-color: green;
+    background-color: rgb(0, 161, 0);
 }
 
 .box:hover {
@@ -35,6 +36,16 @@ body {
     margin: auto;
     box-shadow: 0px 0px 20px white;
     margin-top: 20px;
+    transition: all 50ms ease-out;
+}
+
+.grid-slow {
+    width: 150px;
+    line-height: 0;
+    margin: auto;
+    box-shadow: 0px 0px 20px white;
+    margin-top: 20px;
+    transition: all 1000ms ease-in;
 }
 
 h1, h2, h3, h4 {
