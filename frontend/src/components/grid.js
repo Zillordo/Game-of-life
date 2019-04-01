@@ -1,26 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 
-const Box = ({ boxClass, boxId, row, col, selectBox }) => {
+const Box = ({ boxClass, boxId, row, col, selectBox, onHold }) => {
 
     let select = () => {
         selectBox(row, col);
     }
 
+    let hold = () => {
+        if (onHold) {
+            return select();
+        }
+        else if (!onHold) {
+            return null;
+        }
+    }
+    
+
     return (
-        <div className={boxClass} id={boxId} onClick={select} 
-        // onTouchStart={select} 
-        // onTouchEnd={select} 
-        // onMouseDown={select} 
-        // onMouseUp={select} 
-        // onMouseLeave={select}
-        />
+        <div className={boxClass} 
+        id={boxId} 
+        onClick={select} 
+        onMouseLeave={hold}
+        onDragStart={(e)=>e.preventDefault()} />
     );
 }
 
 
 
 const Grid = ({ cols, rows, grid, selectBox }) => {
+
+    const [hold, setHold] = useState(false);
 
     const width = cols * 14;
     var rowsArr = [];
@@ -40,13 +50,14 @@ const Grid = ({ cols, rows, grid, selectBox }) => {
                     row={i}
                     col={j}
                     selectBox={selectBox}
+                    onHold={hold}
                 />
             )
         }
     }
 
     return (
-        <div className="grid" style={{ width: width }}>
+        <div className="grid" style={{ width: width }} onMouseDown={()=> setHold(true)} onMouseUp={()=> setHold(false)}>
             {rowsArr}
         </div>
     );

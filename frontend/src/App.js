@@ -24,10 +24,10 @@ class Buttons extends React.Component {
         <ButtonToolbar>
           <button className="btn btn-default" onClick={this.props.playButton}>Spustit</button>
           <button className="btn btn-default" onClick={this.props.pauseButton}>Zastavit</button>
-          <button className="btn btn-default" onClick={this.props.clear}>Resetovar</button>
+          <button className="btn btn-default" onClick={this.props.clear}>Resetovat</button>
           <button className="btn btn-default" onClick={this.props.slow}>Zpomalit</button>
           <button className="btn btn-default" onClick={this.props.fast}>Zrychlit</button>
-          <button className="btn btn-default" onClick={this.props.seed}>Náhodně vygenerovat</button>
+          <button className="btn btn-default" onClick={this.props.seed}>Vygenerovat</button>
         </ButtonToolbar>
           <DropdownButton title="Velikost tabulky" id="dropdown-basic-button" onSelect={this.handleSelect}>
             <Dropdown.Item eventKey="1">20x10</Dropdown.Item>
