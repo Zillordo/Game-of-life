@@ -9,11 +9,11 @@ const Box = ({ boxClass, boxId, row, col, selectBox }) => {
 
     return (
         <div className={boxClass} id={boxId} onClick={select} 
-        onTouchStart={select} 
-        onTouchEnd={select} 
-        onMouseDown={select} 
-        onMouseUp={select} 
-        onMouseLeave={select}
+        // onTouchStart={select} 
+        // onTouchEnd={select} 
+        // onMouseDown={select} 
+        // onMouseUp={select} 
+        // onMouseLeave={select}
         />
     );
 }
